@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Premium Subscription</title>
+</head>
+<body>
+
+  <h1>Premium Subscription</h1>
+  <button id="subscribeBtn">اشترك الآن</button>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <!-- زر الاشتراك -->
+  <script>
+    document.getElementById("subscribeBtn")
+      .addEventListener("click", async function () {
+
+        const user = firebase.auth().currentUser;
+
+        if (!user) {
+          alert("لازم تسجل دخول أولاً");
+          return;
+        }
+
+        const response = await fetch("/create-checkout-session", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            userId: user.uid
+          })
+        });
+
+        const data = await response.json();
+
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert("ما رجع رابط من السيرفر");
+        }
+      });
+  </script>
+
+</body>
+</html>

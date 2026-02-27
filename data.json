@@ -1,0 +1,43 @@
+{
+  "users": {
+    "u_1771246570601": {
+      "xp": 30,
+      "level": 1,
+      "sessions": 0,
+      "personality": "motivator"
+    }
+  },
+  "memory": {
+    "u_1771246570601": [
+      {
+        "role": "user",
+        "content": "I have a math exam tomorrow help me"
+      },
+      {
+        "role": "assistant",
+        "content": "Of course! I’d be happy to help you prepare for your math exam. What specific topics or types of problems are you working on? Feel free to share anything you’re concerned about or need assistance with. You’ve got this!"
+      },
+      {
+        "role": "user",
+        "content": "I have a math exam tomorrow help me"
+      },
+      {
+        "role": "assistant",
+        "content": "Absolutely, let’s get you ready! What topics are you covering in your math exam? If you have specific problems or concepts you’re struggling with, just let me know, and we can work through them together. Remember to take a deep breath; you’re going to do great!"
+      },
+      {
+        "role": "user",
+        "content": "I feel tired today"
+      },
+      {
+        "role": "assistant",
+        "content": "It’s completely normal to feel tired, especially when preparing for an exam. Taking care of yourself is just as important as studying! Here are a few tips to help you make the most of your time:\n\n1. **Take Short Breaks:** Study for a little while, then take a short break to refresh your mind. A walk or a quick stretch can do wonders!\n\n2. **Hydrate and Snack:** Drink some water and have a light, healthy snack. This can give you a quick energy boost.\n\n3. **Rest Your Mind:** If you’re feeling too tired to focus, consider taking a short nap—20 minutes can be rejuvenating.\n\n4. **Prioritize:** Focus on key concepts or problems that you find challenging. It’s okay to not cover everything; just make sure to review the important parts.\n\n5. **Stay Positive:** Remind yourself that you’ve been preparing for this. You’re capable of doing well!\n\nHow about we tackle a specific math topic or problem? Just let me know!"
+      }
+    ]
+  },
+  "stripe@example.com": {
+    "premium": true,
+    "subscriptionId": null,
+    "activatedAt": "2026-02-25T20:41:36.842Z"
+  }
+}
