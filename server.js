@@ -1,60 +1,64 @@
-import express from "express";
-import cors from "cors";
+// server.js
 
-import { env } from "./config/env.js";
-import { verifyFirebaseToken } from "./middlewares/authMiddleware.js";
-import { errorHandler } from "./middlewares/errorHandler.js";
+import "dotenv/config"
 
-import { userRoutes } from "./routes/userRoutes.js";
-import { chatRoutes } from "./routes/chatRoutes.js";
-import { adminRoutes } from "./routes/adminRoutes.js";
-import { stripeRoutes } from "./routes/stripeRoutes.js";
-import { zakatRoutes } from "./routes/zakatRoutes.js";
-import { startReminderScheduler } from "./services/schedulerService.js";
+import express from "express"
+import cors from "cors"
+import mongoose from "mongoose"
+console.log("JWT_SECRET:", process.env.JWT_SECRET)
 
-startReminderScheduler();
+import { startReminderScheduler } from "./src/services/reminderScheduler.js"
 
-app.use("/api/zakat", zakatRoutes);
+// ===============================
+// Routes
+// ===============================
 
-const app = express();
+import authRoutes from "./src/routes/authRoutes.js"
+import userRoutes from "./src/routes/userRoutes.js"
+import chatRoutes from "./src/routes/chatRoutes.js"
+import reminderRoutes from "./src/routes/reminderRoutes.js"
+import aiRoutes from "./src/routes/aiRoutes.js"
 
-// 1) Stripe webhook RAW لازم يكون قبل express.json
-app.post(
-  "/stripe/webhook",
-  express.raw({ type: "application/json" }),
-  (req, res, next) => {
-    // تحويل للراوتر (لأن الراوتر مسجل نفس المسار)
-    next();
-  }
-);
+// ===============================
+// App
+// ===============================
 
-// 2) باقي الميدل وير
-app.use(cors());
+const app = express()
 
-// ⚠️ مهم: json بعد webhook raw
-app.use(express.json());
+// ===============================
+// Middlewares
+// ===============================
 
-// 3) Auth decode (يسمح يكون token فاضي)
-app.use(verifyFirebaseToken);
+app.use(cors())
+app.use(express.json())
 
-// 4) Routes
-app.get("/health", (req, res) => {
-  res.json({ ok: true, name: "BlueMind.AI", time: new Date().toISOString() });
-});
+// ===============================
+// Routes
+// ===============================
 
-app.use(userRoutes);
-app.use(chatRoutes);
-app.use(adminRoutes);
+app.use("/api/auth", authRoutes)
+app.use("/api/users", userRoutes)
+app.use("/api/chat", chatRoutes)
+app.use("/api/reminders", reminderRoutes)
+app.use("/api/ai", aiRoutes)
 
-// راوتر Stripe (فيه /stripe/webhook + /stripe/create-checkout-session)
-app.use(stripeRoutes);
+// ===============================
+// MongoDB Connection
+// ===============================
 
-// 5) Global error handler
-app.use(errorHandler);
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("✅ MongoDB connected")
 
-const PORT = process.env.PORT || 3000;
+    startReminderScheduler()
 
-app.listen(PORT, () => {
-  console.log(`🚀 BlueMind.AI server running on port ${PORT}`);
-});
- 
+    const PORT = process.env.PORT || 3000
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`)
+    })
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB connection error:", err)
+  })

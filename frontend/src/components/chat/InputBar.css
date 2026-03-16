@@ -1,0 +1,94 @@
+.chat-input-wrapper{
+width:100%;
+max-width:650px;
+display:flex;
+align-items:center;
+gap:10px;
+background:#282828;
+border-radius:40px;
+padding:10px 14px;
+box-shadow:0 2px 12px rgba(0,0,0,0.12);
+margin:auto;
+box-sizing:border-box;
+}
+
+.chat-input-wrapper textarea{
+flex:1;
+border:none;
+outline:none;
+resize:none;
+font-size:15px;
+background:transparent;
+max-height:140px;
+overflow-y:auto;
+width:100%;
+}
+
+.plus-btn{
+border:none;
+background:#686767;
+width:34px;
+height:34px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+flex-shrink:0;
+}
+
+.send-btn{
+border:none;
+ background: #ffffff;
+width:36px;
+height:36px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+flex-shrink:0;
+}
+
+/* شاشة متوسطة */
+@media (max-width:900px){
+
+.chat-input-wrapper{
+max-width:90%;
+}
+
+}
+
+/* شاشة صغيرة */
+@media (max-width:600px){
+
+.chat-input-wrapper{
+max-width:95%;
+padding:8px 10px;
+}
+
+.chat-input-wrapper textarea{
+font-size:14px;
+}
+
+}
+
+/* شاشة صغيرة جداً */
+@media (max-width:400px){
+
+.chat-input-wrapper{
+max-width:98%;
+gap:6px;
+}
+
+.plus-btn{
+width:30px;
+height:30px;
+}
+
+.send-btn{
+width:32px;
+height:32px;
+}
+
+}

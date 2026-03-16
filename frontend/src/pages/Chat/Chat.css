@@ -1,0 +1,26 @@
+.chatPage{
+display:flex;
+height:100vh;
+background:#343541;
+}
+
+.chatMain{
+flex:1;
+display:flex;
+flex-direction:column;
+}
+
+.chatPage{
+display:flex;
+height:100vh;
+width:100%;
+overflow:hidden;
+}
+
+.chatMain{
+flex:1;
+display:flex;
+flex-direction:column;
+position:relative;
+background: #111111;
+}

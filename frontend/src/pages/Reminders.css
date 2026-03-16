@@ -1,0 +1,197 @@
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#16161b;
+color:white;
+}
+
+/* الصفحة */
+
+.page{
+max-width:650px;
+margin:auto;
+padding:40px;
+}
+
+/* الهيدر */
+
+.header{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:25px;
+}
+
+.header h1{
+margin:0;
+font-size:28px;
+font-weight:600;
+}
+
+/* زر الرجوع */
+
+.back{
+border:none;
+background:none;
+color:white;
+font-size:20px;
+cursor:pointer;
+}
+
+/* زر الإنشاء */
+
+.createBtn{
+  background:linear-gradient(45deg,#224694,#224694);
+color:white;
+border:none;
+padding:12px 18px;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+margin-bottom:20px;
+}
+
+.createBtn:hover{
+  background:linear-gradient(45deg,#1f3d80,#224694);
+}
+
+/* قائمة التذكيرات */
+
+.list{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+/* الكرت */
+
+.card{
+background:#111;
+border-radius:10px;
+padding:16px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border:1px solid #222;
+}
+
+.cardContent h3{
+margin:0;
+font-size:18px;
+}
+
+.cardContent p{
+margin:4px 0;
+color:#aaa;
+}
+
+.cardContent small{
+color:#777;
+}
+
+/* النقاط */
+
+.menuWrapper{
+position:relative;
+}
+
+.dots{
+background:none;
+border:none;
+color:white;
+font-size:20px;
+cursor:pointer;
+}
+
+/* قائمة النقاط */
+
+.menu{
+position:absolute;
+right:0;
+top:25px;
+background:#111;
+border:1px solid #333;
+border-radius:6px;
+display:flex;
+flex-direction:column;
+}
+
+.menu button{
+background:none;
+border:none;
+color:white;
+padding:8px 14px;
+cursor:pointer;
+}
+
+.menu button:hover{
+background:#222;
+}
+
+/* المودال */
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:rgba(0,0,0,0.7);
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.modal{
+background:#111;
+padding:25px;
+border-radius:10px;
+width:320px;
+display:flex;
+flex-direction:column;
+gap:10px;
+border:1px solid #333;
+}
+
+/* الحقول */
+
+.modal input,
+.modal select{
+background:rgba(255, 255, 255, 0.945);
+border:none;
+padding:10px;
+border-radius:6px;
+font-size:14px;
+}
+
+/* الوقت */
+
+.timeRow{
+display:flex;
+gap:10px;
+}
+
+/* الأزرار */
+
+.buttons{
+display:flex;
+justify-content:space-between;
+margin-top:10px;
+}
+
+.buttons button{
+border:none;
+padding:10px 14px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.buttons button:first-child{
+background:#444;
+color:white;
+}
+
+.buttons button:last-child{
+    background:linear-gradient(45deg,#224694,#224694);
+color:white;
+}

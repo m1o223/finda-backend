@@ -1,0 +1,18 @@
+.bubble{
+padding:12px 16px;
+border-radius:12px;
+max-width:60%;
+margin:10px;
+}
+
+.user{
+background:#4b4f5c;
+color:white;
+margin-left:auto;
+}
+
+.ai{
+background:#2a2b32;
+color:white;
+margin-right:auto;
+}
