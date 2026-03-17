@@ -1,11 +1,14 @@
 import { useEffect, useRef } from "react"
 import MessageBubble from "./MessageBubble"
+import "./Messages.css"
 
 export default function Messages({ messages }) {
   const bottomRef = useRef(null)
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" })
+    bottomRef.current?.scrollIntoView({
+      behavior: "smooth",
+    })
   }, [messages])
 
   return (
@@ -13,7 +16,8 @@ export default function Messages({ messages }) {
       {messages.map((msg, i) => (
         <MessageBubble key={i} message={msg} />
       ))}
-      <div ref={bottomRef} />
+
+      <div ref={bottomRef}></div>
     </div>
   )
 }

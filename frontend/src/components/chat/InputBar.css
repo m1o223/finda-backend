@@ -92,3 +92,40 @@ height:32px;
 }
 
 }
+.input-container{
+  padding:20px;
+  background:#212121;
+  border-top:1px solid #333;
+}
+
+.input-box{
+  display:flex;
+  align-items:center;
+  background:#2f2f2f;
+  border-radius:25px;
+  padding:12px 16px;
+  gap:10px;
+}
+
+.input-box input{
+  flex:1;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:white;
+  font-size:16px;
+  height:28px;
+}
+
+.input-box input::placeholder{
+  color:#b3b3b3;
+}
+
+.send-btn{
+  background:#19c37d;
+  border:none;
+  color:white;
+  padding:8px 14px;
+  border-radius:20px;
+  cursor:pointer;
+}

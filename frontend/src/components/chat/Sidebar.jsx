@@ -1,54 +1,102 @@
 import { useState, useEffect } from "react"
-import { PanelLeft, History, Bell, Settings, CopyPlus } from "lucide-react"
-// import { getChats } from "../../api/chatApi"
+import { useNavigate } from "react-router-dom"
+import { PanelLeft, History, Bell, Settings, CopyPlus, MoreVertical } from "lucide-react"
 import "./Sidebar.css"
 
-export default function Sidebar(){
+export default function Sidebar({ onSelectChat }) {
 
-  const [open,setOpen] = useState(true)
+  const navigate = useNavigate()
 
-  const [chats,setChats] = useState([])
-
-  const handleNewChat = () => {
-    window.location.reload()
-  }
+  const [open, setOpen] = useState(true)
+  const [chats, setChats] = useState([])
+  const [menuOpen, setMenuOpen] = useState(null)
 
 
-  // ==============================
+  // =============================
   // LOAD CHAT HISTORY
-  // ==============================
+  // =============================
 
-  useEffect(()=>{
+  useEffect(() => {
 
     async function loadChats(){
 
       try{
 
-        // const data = await getChats()
+        const res = await fetch("http://localhost:3000/api/chat/history")
+        const data = await res.json()
 
-        if(Array.isArray(data)){
-          setChats(data)
-        }
+        if(!Array.isArray(data)) return
 
-      }catch(err){
+        // فقط رسائل المستخدم
+        const userMessages = data.filter(m => m.role === "user")
 
-        console.error("Failed to load chats",err)
+        setChats(userMessages)
 
+      }
+      catch(err){
+        console.error("Failed to load chats", err)
       }
 
     }
 
-   // loadChats()
+    loadChats()
 
-  },[])
+  }, [])
 
 
 
-  return(
+  // =============================
+  // NEW CHAT
+  // =============================
+
+  const handleNewChat = () => {
+
+    window.location.reload()
+
+  }
+
+
+
+  // =============================
+  // DELETE CHAT
+  // =============================
+
+  const deleteChat = (index) => {
+
+    const newChats = chats.filter((_,i)=> i !== index)
+
+    setChats(newChats)
+
+  }
+
+
+
+  // =============================
+  // RENAME CHAT
+  // =============================
+
+  const renameChat = (index) => {
+
+    const name = prompt("Rename chat")
+
+    if(!name) return
+
+    const updated = [...chats]
+
+    updated[index].message = name
+
+    setChats(updated)
+
+  }
+
+
+
+  return (
 
     <div className={`sidebar ${open ? "open" : "closed"}`}>
 
-      {/* زر فتح واغلاق */}
+      {/* menu button */}
+
       <div className="menu-button" onClick={()=>setOpen(!open)}>
         <PanelLeft size={20}/>
       </div>
@@ -66,16 +114,14 @@ export default function Sidebar(){
 
       {/* Reminders */}
 
-      <div className="sidebar-item">
+      <div className="sidebar-item" onClick={()=>navigate("/reminders")}>
         <Bell size={18}/>
         {open && <span className="item-text">Reminders</span>}
       </div>
 
 
 
-      {/* ========================= */}
-      {/* HISTORY */}
-      {/* ========================= */}
+      {/* History title */}
 
       <div className="sidebar-item">
         <History size={18}/>
@@ -83,23 +129,56 @@ export default function Sidebar(){
       </div>
 
 
+
+      {/* Chat History */}
+
       {open && (
 
         <div className="chat-history">
 
-          {chats.map((chat)=>{
+          {chats.map((chat,index)=>(
 
-            return(
+            <div className="history-row" key={index}>
 
-              <div key={chat._id} className="history-item">
+              <div
+                className="history-item"
+                onClick={()=>onSelectChat && onSelectChat(chat)}
+              >
+                {chat.message.slice(0,40)}
+              </div>
 
-                {chat.title || "New Chat"}
+
+
+              {/* three dots menu */}
+
+              <div className="history-menu">
+
+                <MoreVertical
+                  size={16}
+                  onClick={()=>setMenuOpen(menuOpen === index ? null : index)}
+                />
+
+                {menuOpen === index && (
+
+                  <div className="menu-dropdown">
+
+                    <div onClick={()=>renameChat(index)}>
+                      Rename
+                    </div>
+
+                    <div onClick={()=>deleteChat(index)}>
+                      Delete
+                    </div>
+
+                  </div>
+
+                )}
 
               </div>
 
-            )
+            </div>
 
-          })}
+          ))}
 
         </div>
 
@@ -107,7 +186,7 @@ export default function Sidebar(){
 
 
 
-      {/* مسافة */}
+      {/* space */}
 
       <div className="sidebar-space"></div>
 
@@ -115,7 +194,10 @@ export default function Sidebar(){
 
       {/* Settings */}
 
-      <div className="sidebar-item">
+      <div
+        className="sidebar-item settings-bottom"
+        onClick={()=>navigate("/settings")}
+      >
         <Settings size={18}/>
         {open && <span className="item-text">Settings</span>}
       </div>

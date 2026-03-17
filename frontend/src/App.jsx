@@ -7,6 +7,7 @@ import Register from "./pages/Register/Register";
 import Landing from "./pages/Landing/Landing";
 import Chat from "./pages/Chat/Chat";
 import Reminders from "./pages/Reminders";
+import Settings from "./pages/Settings"
 
 function App() {
 
@@ -29,6 +30,8 @@ return (
 <Route path="/chat" element={<Chat />} />
 
 <Route path="/reminders" element={<Reminders />} />
+
+<Route path="/settings" element={<Settings/>}/>
 
 </Routes>
 

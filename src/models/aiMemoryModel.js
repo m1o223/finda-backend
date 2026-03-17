@@ -1,20 +1,18 @@
 import mongoose from "mongoose"
 
-const memorySchema = new mongoose.Schema({
+const chatMemorySchema = new mongoose.Schema({
 
-  user: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true
+    ref: "User"
   },
 
   role: {
     type: String,
-    enum: ["user", "assistant"],
-    required: true
+    enum: ["user", "assistant"]
   },
 
-  content: {
+  message: {
     type: String,
     required: true
   },
@@ -26,4 +24,4 @@ const memorySchema = new mongoose.Schema({
 
 })
 
-export default mongoose.model("AIMemory", memorySchema)
+export default mongoose.model("ChatMemory", chatMemorySchema)

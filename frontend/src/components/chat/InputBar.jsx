@@ -20,7 +20,6 @@ export default function InputBar({ center, sendMessage, setOpen }) {
 
   }
 
-
   function handleChange(e) {
 
     setMessage(e.target.value)
@@ -35,7 +34,6 @@ export default function InputBar({ center, sendMessage, setOpen }) {
 
   }
 
-
   function handleKeyDown(e) {
 
     if (e.key === "Enter" && !e.shiftKey) {
@@ -45,13 +43,12 @@ export default function InputBar({ center, sendMessage, setOpen }) {
 
   }
 
-
   return (
 
     <div className={`chat-input-wrapper ${center ? "center" : "bottom"}`}>
 
       <button className="plus-btn">
-        <Plus size={18}/>
+        <Plus size={18} />
       </button>
 
       <textarea
@@ -64,7 +61,7 @@ export default function InputBar({ center, sendMessage, setOpen }) {
       />
 
       <button className="send-btn" onClick={handleSend}>
-        <SendHorizontal size={18}/>
+        <SendHorizontal size={18} />
       </button>
 
     </div>

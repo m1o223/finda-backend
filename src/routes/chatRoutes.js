@@ -1,10 +1,12 @@
-// src/routes/chatRoutes.js
-import express from "express";
-import { chatController } from "../controllers/chatController.js";
+import express from "express"
+import { chatController, getChats } from "../controllers/chatController.js"
 
-const router = express.Router();
+const router = express.Router()
 
-// POST /api/chat
-router.post("/", chatController);
+// send message
+router.post("/", chatController)
 
-export default router;
+// chat history
+router.get("/history", getChats)
+
+export default router
