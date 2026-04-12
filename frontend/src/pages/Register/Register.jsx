@@ -4,7 +4,6 @@ import { auth } from "../../config/firebase";
 import { getReminders, createReminder } from "../../api/remindersApi.js";
 
 export default function Register() {
-
   const navigate = useNavigate();
 
   const [reminders, setReminders] = useState([]);
@@ -16,126 +15,132 @@ export default function Register() {
     time: ""
   });
 
-
+  // ✅ أضفنا state للتسجيل
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
-
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
-
       if (!user) {
         navigate("/login");
         return;
       }
 
       try {
-
         const token = await user.getIdToken(true);
-
         const data = await getReminders(token);
-
         setReminders(data);
-
       } catch (error) {
-
         console.error(error);
-
       }
-
     });
 
     return () => unsubscribe();
-
-  }, []);
-
-
-
+  }, [navigate]);
 
   const handleChange = (e) => {
-
     setForm({
       ...form,
       [e.target.name]: e.target.value
     });
-
   };
 
-
-
-
   const handleCreateReminder = async () => {
-
     try {
-
       const user = auth.currentUser;
-
       if (!user) return;
 
       const token = await user.getIdToken(true);
-
       const reminder = await createReminder(form, token);
 
       setReminders([...reminders, reminder]);
-
     } catch (error) {
-
       console.error(error);
-
     }
-
   };
 
-return(
+  // ✅ الدالة الناقصة (سبب الكراش)
+  const handleRegister = async () => {
+    try {
+      if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+      }
 
-<div className="login">
+      const res = await fetch("http://localhost:3000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password
+        })
+      });
 
-<div className="login-header">
-<span className="back" onClick={()=>navigate(-1)}>←</span>
-<h2>Create Account</h2>
-</div>
+      const data = await res.json();
 
-<div className="login-container">
+      if (!res.ok) {
+        alert(data.message || "Register failed");
+        return;
+      }
 
-<input
-className="input"
-placeholder="Name"
-onChange={(e)=>setName(e.target.value)}
-/>
+      alert("Account created successfully!");
+      navigate("/login");
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-<input
-className="input"
-placeholder="Email"
-onChange={(e)=>setEmail(e.target.value)}
-/>
+  return (
+    <div className="login">
+      <div className="login-header">
+        <span className="back" onClick={() => navigate(-1)}>←</span>
+        <h2>Create Account</h2>
+      </div>
 
-<input
-className="input"
-type="password"
-placeholder="Password"
-onChange={(e)=>setPassword(e.target.value)}
-/>
+      <div className="login-container">
+        <input
+          className="input"
+          placeholder="Name"
+          onChange={(e) => setName(e.target.value)}
+        />
 
-<input
-className="input"
-type="password"
-placeholder="Confirm Password"
-onChange={(e)=>setConfirmPassword(e.target.value)}
-/>
+        <input
+          className="input"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-<button className="login-btn" onClick={registerUser}>
-Sign Up
-</button>
+        <input
+          className="input"
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-<p className="signup">
-Already have an account?
-<span onClick={()=>navigate("/login")}>
-Login
-</span>
-</p>
+        <input
+          className="input"
+          type="password"
+          placeholder="Confirm Password"
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
 
-</div>
+        {/* ✅ التعديل هون */}
+        <button className="login-btn" onClick={handleRegister}>
+          Sign Up
+        </button>
 
-</div>
-
-);
-
+        <p className="signup">
+          Already have an account?
+          <span onClick={() => navigate("/login")}>
+            Login
+          </span>
+        </p>
+      </div>
+    </div>
+  );
 }

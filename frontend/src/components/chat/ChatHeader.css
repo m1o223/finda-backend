@@ -1,15 +1,57 @@
-
-.menu-toggle{
-font-size:24px;
-background:none;
-border:none;
-cursor:pointer;
-margin-right:10px;
+:root {
+  --primary: #6366f1;
+  --secondary: #8b5cf6;
+  --border: #e5e7eb;
 }
 
-.chat-header{
-display:flex;
-align-items:center;
-gap:10px;
-padding:10px 20px;
+/* ===== HEADER ===== */
+.chat-header {
+  display: flex;
+  align-items: center;
+
+  height: 38px;
+  padding: 0 12px;
+
+  border-bottom: 1px solid var(--border);
+  background: #ffffff;
+}
+
+/* ===== MENU BUTTON ===== */
+.menu-toggle {
+  font-size: 20px;
+  background: #e9e8e8;
+  border: none;
+  cursor: pointer;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 10px;
+
+  transition: 0.2s;
+}
+
+.menu-toggle:hover {
+  background: #ccced1;
+}
+
+/* ===== LOGO TEXT ===== */
+.logo-text {
+  font-size: 23px;
+  font-weight: 600;
+
+  background: linear-gradient(135deg, #6366f1, #974ddd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  margin-left: 4px;
+
+  /* glow خفيف */
+  text-shadow: 0 0 8px rgba(139, 92, 246, 0.15);
 }

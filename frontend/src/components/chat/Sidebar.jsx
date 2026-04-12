@@ -12,37 +12,43 @@ export default function Sidebar({ onSelectChat }) {
   const [menuOpen, setMenuOpen] = useState(null)
 
 
-  // =============================
-  // LOAD CHAT HISTORY
-  // =============================
+  
+// ================================
+// LOAD CHAT HISTORY
+// ================================
+useEffect(() => {
+  async function loadChats() {
+    try {
+      const res = await fetch("http://localhost:3000/api/chat/history")
+      const data = await res.json()
 
-  useEffect(() => {
+      if (!Array.isArray(data)) return
 
-    async function loadChats(){
+      const groupedChats = []
 
-      try{
+      data.forEach((msg) => {
+        let chat = groupedChats.find((c) => c.id === (msg.chatId || msg._id))
 
-        const res = await fetch("http://localhost:3000/api/chat/history")
-        const data = await res.json()
+        if (!chat) {
+          chat = {
+            id: msg.chatId || msg._id,
+            title: (msg.message || "New Chat").slice(0, 20),
+            messages: []
+          }
+          groupedChats.push(chat)
+        }
 
-        if(!Array.isArray(data)) return
+        chat.messages.push(msg)
+      })
 
-        // فقط رسائل المستخدم
-        const userMessages = data.filter(m => m.role === "user")
-
-        setChats(userMessages)
-
-      }
-      catch(err){
-        console.error("Failed to load chats", err)
-      }
-
+      setChats(groupedChats)
+    } catch (err) {
+      console.error("Failed to load chats", err)
     }
+  }
 
-    loadChats()
-
-  }, [])
-
+  loadChats()
+}, [])
 
 
   // =============================
@@ -142,9 +148,9 @@ export default function Sidebar({ onSelectChat }) {
 
               <div
                 className="history-item"
-                onClick={()=>onSelectChat && onSelectChat(chat)}
+                onClick={() => onSelectChat && onSelectChat(chat.id)}
               >
-                {chat.message.slice(0,40)}
+               {chat.title}
               </div>
 
 

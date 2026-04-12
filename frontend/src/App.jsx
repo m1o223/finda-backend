@@ -7,7 +7,12 @@ import Register from "./pages/Register/Register";
 import Landing from "./pages/Landing/Landing";
 import Chat from "./pages/Chat/Chat";
 import Reminders from "./pages/Reminders";
-import Settings from "./pages/Settings"
+import Settings from "./pages/settings/Settings"
+
+
+
+
+
 
 function App() {
 

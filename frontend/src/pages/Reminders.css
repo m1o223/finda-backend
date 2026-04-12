@@ -1,197 +1,224 @@
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#16161b;
-color:white;
-}
-
-/* الصفحة */
-
-.page{
-max-width:650px;
-margin:auto;
-padding:40px;
+/* الصفحة كاملة */
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #ccd1da, #eef1f6);
+  padding: 20px;
+  font-family: "Inter", sans-serif;
 }
 
 /* الهيدر */
-
-.header{
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:25px;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
 }
 
-.header h1{
-margin:0;
-font-size:28px;
-font-weight:600;
+.header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1e1e1e;
 }
 
 /* زر الرجوع */
 
 .back{
-border:none;
-background:none;
-color:white;
-font-size:20px;
-cursor:pointer;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  color: white;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6); /* 🔥 البنفسجي */
+  padding: 2px 6px;
+  border-radius: 10px;
 }
 
-/* زر الإنشاء */
-
-.createBtn{
-  background:linear-gradient(45deg,#224694,#224694);
-color:white;
-border:none;
-padding:12px 18px;
-border-radius:8px;
-cursor:pointer;
-font-weight:600;
-margin-bottom:20px;
+.back:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
-.createBtn:hover{
-  background:linear-gradient(45deg,#1f3d80,#224694);
+/* زر create */
+/* زر create */
+.add {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6); /* 🔥 البنفسجي */
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+  color: white;
+
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-/* قائمة التذكيرات */
-
-.list{
-display:flex;
-flex-direction:column;
-gap:12px;
+.add:hover {
+  background: #f1f1f1;
 }
 
-/* الكرت */
-
-.card{
-background:#111;
-border-radius:10px;
-padding:16px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-border:1px solid #222;
+/* الليست */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.cardContent h3{
-margin:0;
-font-size:18px;
+/* الكارد */
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  transition: 0.2s;
 }
 
-.cardContent p{
-margin:4px 0;
-color:#aaa;
+.card:hover {
+  transform: translateY(-2px);
 }
 
-.cardContent small{
-color:#777;
+/* رأس الكارد */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* النقاط */
-
-.menuWrapper{
-position:relative;
+.card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
 }
 
-.dots{
-background:none;
-border:none;
-color:white;
-font-size:20px;
-cursor:pointer;
-}
-
-/* قائمة النقاط */
-
-.menu{
-position:absolute;
-right:0;
-top:25px;
-background:#111;
-border:1px solid #333;
-border-radius:6px;
-display:flex;
-flex-direction:column;
-}
-
-.menu button{
-background:none;
-border:none;
-color:white;
-padding:8px 14px;
-cursor:pointer;
-}
-
-.menu button:hover{
-background:#222;
-}
-
-/* المودال */
-
-.overlay{
-position:fixed;
-top:0;
-left:0;
-right:0;
-bottom:0;
-background:rgba(0,0,0,0.7);
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.modal{
-background:#111;
-padding:25px;
-border-radius:10px;
-width:320px;
-display:flex;
-flex-direction:column;
-gap:10px;
-border:1px solid #333;
-}
-
-/* الحقول */
-
-.modal input,
-.modal select{
-background:rgba(255, 255, 255, 0.945);
-border:none;
-padding:10px;
-border-radius:6px;
-font-size:14px;
+/* الوصف */
+.desc {
+  margin-top: 6px;
+  color: #777;
+  font-size: 14px;
 }
 
 /* الوقت */
+.time {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #999;
+}
 
-.timeRow{
-display:flex;
-gap:10px;
+/* زر النقاط */
+.menu-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+.menu-btn:hover {
+  background: #f3f3f3;
+}
+
+/* dropdown */
+.menu-wrapper {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 28px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  overflow: hidden;
+  z-index: 10;
+}
+
+.dropdown button {
+  display: block;
+  padding: 10px 14px;
+  width: 100%;
+  border: none;
+  background: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown button:hover {
+  background: #f5f5f5;
+}
+
+/* مودال */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* نافذة */
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  width: 320px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modal h3 {
+  margin-bottom: 12px;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+
+  box-sizing: border-box;
+}
+
+.modal input:focus,
+.modal select:focus {
+  border-color: #2a2764;
+  box-shadow: 0 0 0 2px rgba(79,70,229,0.2);
+}
+
+/* صف الوقت */
+.row {
+  display: flex;
+  gap: 10px;
 }
 
 /* الأزرار */
-
-.buttons{
-display:flex;
-justify-content:space-between;
-margin-top:10px;
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
 }
 
-.buttons button{
-border:none;
-padding:10px 14px;
-border-radius:6px;
-cursor:pointer;
+.actions button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
 }
 
-.buttons button:first-child{
-background:#444;
-color:white;
+.actions button[type="submit"] {
+   background: linear-gradient(135deg, #6366f1, #8b5cf6); /* 🔥 البنفسجي */
+
+  color: white;
 }
 
-.buttons button:last-child{
-    background:linear-gradient(45deg,#224694,#224694);
-color:white;
+.actions button[type="submit"]:hover {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6); /* 🔥 البنفسجي */
+
+}
+
+.actions button[type="button"] {
+  background: #eee;
 }

@@ -1,19 +1,28 @@
-import express from "express";
-
+import express from "express"
 import {
-  createReminder,
-  getReminders,
-  deleteReminder,
-  updateReminder
+ createReminder,
+ getReminders,
+ getReminderById,
+ updateReminder,
+ deleteReminder,
+ toggleReminder
 } from "../controllers/reminderController.js"
 
 import { protect } from "../middlewares/authMiddleware.js"
 
 const router = express.Router()
 
-router.post("/", protect, createReminder)
-router.get("/", protect, getReminders)
-router.put("/:id", protect, updateReminder)
-router.delete("/:id", protect, deleteReminder)
+router.use(protect)
+router.post("/",createReminder)
+
+router.get("/",getReminders)
+
+router.get("/:id",getReminderById)
+
+router.put("/:id",updateReminder)
+
+router.patch("/:id/toggle",toggleReminder)
+
+router.delete("/:id",deleteReminder)
 
 export default router

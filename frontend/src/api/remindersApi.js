@@ -1,70 +1,79 @@
-const API = "http://localhost:3000/api/reminders";
-
-const getAuthHeaders = (token) => ({
-  "Content-Type": "application/json",
-  Authorization: `Bearer ${token}`,
-});
+const API_URL = "http://localhost:3000/api/reminders";
 
 export const getReminders = async (token) => {
-  const res = await fetch(API, {
-    method: "GET",
-    headers: getAuthHeaders(token),
-  });
+  try {
+    const res = await fetch(API_URL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  if (!res.ok) {
-    throw new Error(data.message || "Failed to fetch reminders");
+    return data;
+  } catch (err) {
+    console.error("getReminders error:", err);
+    throw err;
   }
-
-  return data;
 };
 
-export const createReminder = async (payload, token) => {
-  const res = await fetch(API, {
-    method: "POST",
-    headers: getAuthHeaders(token),
-    body: JSON.stringify(payload),
-  });
+export const createReminder = async (reminder, token) => {
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(reminder),
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  if (!res.ok) {
-    throw new Error(data.message || "Failed to create reminder");
+    return data;
+  } catch (err) {
+    console.error("createReminder error:", err);
+    throw err;
   }
-
-  return data;
 };
 
-export const updateReminder = async (id, payload, token) => {
-  const res = await fetch(`${API}/${id}`, {
-    method: "PUT",
-    headers: getAuthHeaders(token),
-    body: JSON.stringify(payload),
-  });
+export const updateReminder = async (id, reminder, token) => {
+  try {
+    const res = await fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(reminder),
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  if (!res.ok) {
-    throw new Error(data.message || "Failed to update reminder");
+    return data;
+  } catch (err) {
+    console.error("updateReminder error:", err);
+    throw err;
   }
-
-  return data;
 };
 
 export const deleteReminder = async (id, token) => {
-  const res = await fetch(`${API}/${id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  try {
+    const res = await fetch(`${API_URL}/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  if (!res.ok) {
-    throw new Error(data.message || "Failed to delete reminder");
+    return data;
+  } catch (err) {
+    console.error("deleteReminder error:", err);
+    throw err;
   }
-
-  return data;
 };

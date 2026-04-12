@@ -1,24 +1,44 @@
-import Joi from "joi"
+import Joi from "joi";
 
+// =========================
+// CREATE REMINDER SCHEMA
+// =========================
 export const createReminderSchema = Joi.object({
-title: Joi.string().required(),
-description: Joi.string().allow("").optional(),
-date: Joi.date().required(),
-time: Joi.object({
-hour: Joi.number().min(0).max(23).required(),
-minute: Joi.number().min(0).max(59).required()
-}),
-recurring: Joi.string().valid("daily","weekly","monthly",null)
-})
+  title: Joi.string().required(),
 
+  description: Joi.string().allow("").optional(),
+
+  date: Joi.date().required(),
+
+  time: Joi.object({
+    hour: Joi.number().min(0).max(23).required(),
+    minute: Joi.number().min(0).max(59).required(),
+  }).required(),
+
+  recurring: Joi.string()
+    .valid("daily", "weekly", "monthly", null)
+    .optional(),
+});
+
+
+// =========================
+// UPDATE REMINDER SCHEMA
+// =========================
 export const updateReminderSchema = Joi.object({
-title: Joi.string(),
-description: Joi.string().allow(""),
-date: Joi.date(),
-time: Joi.object({
-hour: Joi.number().min(0).max(23),
-minute: Joi.number().min(0).max(59)
-}),
-recurring: Joi.string().valid("daily","weekly","monthly",null),
-isCompleted: Joi.boolean()
-})
+  title: Joi.string().optional(),
+
+  description: Joi.string().allow("").optional(),
+
+  date: Joi.date().optional(),
+
+  time: Joi.object({
+    hour: Joi.number().min(0).max(23).required(),
+    minute: Joi.number().min(0).max(59).required(),
+  }).optional(),
+
+  recurring: Joi.string()
+    .valid("daily", "weekly", "monthly", null)
+    .optional(),
+
+  isCompleted: Joi.boolean().optional(),
+});

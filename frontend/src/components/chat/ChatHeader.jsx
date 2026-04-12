@@ -1,7 +1,6 @@
-import "./ChatHeader.css";
+import "./ChatHeader.css"
 
 export default function ChatHeader({ toggleSidebar }) {
-
   return (
     <div className="chat-header">
 
@@ -12,9 +11,10 @@ export default function ChatHeader({ toggleSidebar }) {
         ☰
       </button>
 
-      <h1>BlueMind AI</h1>
+      <div className="logo-text">
+        BlueMind AI
+      </div>
 
     </div>
-  );
-
+  )
 }

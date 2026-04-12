@@ -10,7 +10,9 @@ export default function Intro() {
 
       <div className="intro-container">
 
-        <h1>BlueMind AI</h1>
+        <h1 className="title">
+     <span>BlueMind AI</span>
+</h1>
 
         <p>
           Welcome to BlueMind AI. Your intelligent assistant powered by AI.

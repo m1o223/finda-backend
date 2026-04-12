@@ -40,7 +40,7 @@ return (
 
 
 <h1 className="title">
-BlueMind <span>AI</span>
+     <span>BlueMind AI</span>
 </h1>
 
 <p className="subtitle">
