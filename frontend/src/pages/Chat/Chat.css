@@ -1,23 +1,24 @@
 :root {
-  --bg-page: #fffdfb;
+  --bg-page: #181818;
   --bg-main: #ffffff;
   --bg-soft: #fff7fb;
   --bg-card: #ffffff;
 
-  --bg-user: linear-gradient(135deg, #d86df7, #f49ac2);
+  --bg-user: linear-gradient(135deg, #d86df7, #b42f6b);
   --bg-ai: #f4f0ff;
 
   --text-main: #1f1728;
-  --text-soft: #6f6478;
+  --text-soft: #8a7997;
   --text-light: #ffffff;
 
-  --border-light: #f0e6f4;
+  --border-light: #292829;
   --border-soft: #eadcf0;
 
-  --primary: #d86df7;
-  --primary-dark: #bb4ee0;
-  --secondary: #f49ac2;
-  --accent: #f7d7ea;
+  --primary: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  --primary-dark:linear-gradient(135deg, #8b5cf6, #3b82f6);
+  --bg-ai: #f4f0ff;
+  --secondary: #4b0c28;
+  --accent: #ffffff;
 
   --shadow-soft: 0 4px 20px rgba(0,0,0,0.05);
 }
@@ -176,7 +177,7 @@
   font-size: 20px;
   font-weight: 600;
 
-background: #141414;
+background: #ffffff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -187,7 +188,7 @@ background: #141414;
   font-size: 20px;
   font-weight: 600;
 
-  background: #242424;
+  background: #ffffff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 

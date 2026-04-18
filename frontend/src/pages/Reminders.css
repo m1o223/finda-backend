@@ -1,7 +1,7 @@
 /* الصفحة كاملة */
 .page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #ccd1da, #eef1f6);
+  background: radial-gradient(circle at top, #1a0f2e 0%, #0a0a0a 60%);
   padding: 20px;
   font-family: "Inter", sans-serif;
 }
@@ -17,7 +17,7 @@
 .header h2 {
   font-size: 22px;
   font-weight: 600;
-  color: #1e1e1e;
+  color: #ffffff;
 }
 
 /* زر الرجوع */
@@ -26,8 +26,8 @@
   border: none;
   cursor: pointer;
   transition: 0.2s;
-  color: white;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6); /* 🔥 البنفسجي */
+  color: rgb(255, 255, 255);
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6); /* 🔥 البنفسجي */
   padding: 2px 6px;
   border-radius: 10px;
 }
@@ -40,7 +40,7 @@
 /* زر create */
 /* زر create */
 .add {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6); /* 🔥 البنفسجي */
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6); /* 🔥 البنفسجي */
   border: none;
   padding: 6px 12px;
   border-radius: 8px;
@@ -53,7 +53,13 @@
 }
 
 .add:hover {
-  background: #f1f1f1;
+transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+input {
+  background-color: #ffffff; /* أو transparent */
+  color: #222; /* 👈 أهم شي */
 }
 
 /* الليست */
@@ -65,7 +71,7 @@
 
 /* الكارد */
 .card {
-  background: white;
+  background: rgb(255, 255, 255);
   border-radius: 14px;
   padding: 16px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.05);
@@ -125,7 +131,7 @@
   position: absolute;
   right: 0;
   top: 28px;
-  background: white;
+  background: rgb(255, 255, 255);
   border: 1px solid #eee;
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
@@ -138,7 +144,7 @@
   padding: 10px 14px;
   width: 100%;
   border: none;
-  background: white;
+  background: rgb(255, 255, 255);
   text-align: left;
   cursor: pointer;
 }
@@ -176,7 +182,7 @@
   padding: 12px;
   margin-top: 10px;
   border-radius: 10px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #ffffff;
   font-size: 14px;
 
   box-sizing: border-box;
@@ -209,13 +215,13 @@
 }
 
 .actions button[type="submit"] {
-   background: linear-gradient(135deg, #6366f1, #8b5cf6); /* 🔥 البنفسجي */
+   background: linear-gradient(135deg, #8b5cf6, #3b82f6); /* 🔥 البنفسجي */
 
   color: white;
 }
 
 .actions button[type="submit"]:hover {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6); /* 🔥 البنفسجي */
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6); /* 🔥 البنفسجي */
 
 }
 

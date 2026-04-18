@@ -1,122 +1,71 @@
-import { useState, useEffect } from "react";
-import "./Landing.css";
 import { useNavigate } from "react-router-dom";
 
-export default function Landing(){
+export default function LandingPage() {
+  const navigate = useNavigate();
 
-const navigate = useNavigate();
+  const features = [
+    {
+      title: "Smart Chat",
+      description: "Engage in intelligent conversations with your AI assistant",
+    },
+    {
+      title: "Reminders",
+      description: "Never miss important tasks with smart reminder system",
+    },
+    {
+      title: "AI Powered",
+      description: "Advanced AI helps you manage your life easily",
+    },
+  ];
 
-const phrases = [
-"BlueMind AI",
-"Fast. Smart. Intelligent.",
-"Your intelligent assistant"
-];
+  return (
+    <div style={styles.page}>
+      
+      {/* Header */}
+      <div style={styles.header}>
+        <h2>BlueMind AI</h2>
+        <button onClick={() => navigate("/login")} style={styles.loginBtn}>
+          Login
+        </button>
+      </div>
 
-const [text,setText] = useState("");
-const [index,setIndex] = useState(0);
-const [char,setChar] = useState(0);
-const [deleting,setDeleting] = useState(false);
-const [jump,setJump] = useState(false);
+      {/* Hero */}
+      <div style={styles.hero}>
+        <h1 style={styles.title}>Your AI Assistant</h1>
+        <p style={styles.subtitle}>
+          Manage your tasks, chat, and stay organized with AI
+        </p>
 
-useEffect(()=>{
+        <div style={styles.buttons}>
+          <button
+            style={styles.primaryBtn}
+            onClick={() => navigate("/register")}
+          >
+            Get Started
+          </button>
 
-let speed = deleting ? 40 : 80;
+          <button
+            style={styles.secondaryBtn}
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </button>
+        </div>
+      </div>
 
-const timer = setTimeout(()=>{
+      {/* Features */}
+      <div style={styles.features}>
+        {features.map((f, i) => (
+          <div key={i} style={styles.card}>
+            <h3>{f.title}</h3>
+            <p>{f.description}</p>
+          </div>
+        ))}
+      </div>
 
-const current = phrases[index];
-
-if(!deleting){
-
-setText(current.substring(0,char+1));
-setChar(char+1);
-
-if(char+1 === current.length){
-
-setTimeout(()=>setDeleting(true),1200);
-
+    </div>
+  );
 }
 
-}else{
 
-setText(current.substring(0,char-1));
-setChar(char-1);
-
-if(char-1 === 0){
-
-setDeleting(false);
-setIndex((index+1)%phrases.length);
-
-setJump(true);
-setTimeout(()=>setJump(false),400);
-
-}
-
-}
-
-},speed);
-
-return ()=>clearTimeout(timer);
-
-},[char,deleting,index]);
-
-return(
-
-<div className="landing">
-
-<div className="logo">
-
-BlueMind <span className="ai">AI</span>
-
-</div>
-
-<div className="center">
-
-<div className={`shapes ${jump ? "jump" : ""}`}>
-
-<div className="square"></div>
-<div className="circle"></div>
-<div className="triangle"></div>
-
-</div>
-
-<h1 className="title">
-
-{text}
-<span className="cursor">|</span>
-
-</h1>
-
-<p className="subtitle">
-
-BlueMind AI helps you think faster,
-learn smarter and organize your ideas.
-
-</p>
-
-<button
-className="start"
-onClick={()=>navigate("/auth")}
->
-
-Start Now
-
-</button>
-
-</div>
-
-<div className="features">
-
-<div>• Understand ideas instantly</div>
-<div>• Remember important information</div>
-<div>• Help you study faster</div>
-<div>• Organize your daily tasks</div>
-<div>• Smart AI responses</div>
-
-</div>
-
-</div>
-
-);
-
-}
+  

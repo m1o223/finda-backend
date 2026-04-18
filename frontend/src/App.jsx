@@ -8,8 +8,7 @@ import Landing from "./pages/Landing/Landing";
 import Chat from "./pages/Chat/Chat";
 import Reminders from "./pages/Reminders";
 import Settings from "./pages/settings/Settings"
-
-
+import Feedback from "./pages/Feedback/Feedback";
 
 
 
@@ -35,6 +34,8 @@ return (
 <Route path="/chat" element={<Chat />} />
 
 <Route path="/reminders" element={<Reminders />} />
+
+<Route path="/feedback" element={<Feedback />} />
 
 <Route path="/settings" element={<Settings/>}/>
 

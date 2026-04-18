@@ -5,9 +5,9 @@
   justify-content:center;
   align-items:center;
 
-  background:linear-gradient( 135deg,  #fffdfb, #fffdfb );
+ background: radial-gradient(circle at top, #1a0f2e 0%, #0a0a0a 60%);
 
-  color:rgb(0, 0, 0);
+  color:rgb(172, 172, 172);
   font-family:'Segoe UI', sans-serif;
 }
 
@@ -36,7 +36,7 @@
   border:none;
   border-radius:10px;
 
-    background: linear-gradient(135deg, #6366f1, #8b5cf6); /* 🔥 البنفسجي */
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6); /* 🔥 البنفسجي */
 
   color:rgb(255, 255, 255);
   font-size:16px;

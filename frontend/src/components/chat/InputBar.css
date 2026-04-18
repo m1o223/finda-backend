@@ -5,7 +5,7 @@
   align-items: center;
   gap: 10px;
 
-  background: #ffffff;
+  background: #222222;
   border-radius: 40px;
   padding: 10px 14px;
   box-shadow: 0 2px 12px rgba(180,150,255,0.25);
@@ -27,7 +27,7 @@
   overflow-y: auto;
   width: 100%;
 
-  color: #1e1e1e;
+  color: #ffffff;
 }
 
 /* ======================= */
@@ -82,7 +82,7 @@
 
 /* عند الكتابة */
 .send-btn.active {
-  background: linear-gradient(135deg, #6366f1, #9651d6);
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
   box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
 }
 

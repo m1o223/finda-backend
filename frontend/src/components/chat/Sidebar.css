@@ -1,7 +1,7 @@
 .sidebar {
   width: 260px;
   height: 100vh;
-  background: linear-gradient(180deg, #6366f1, #8b5cf6);
+  background:222222;
   color: white;
   display: flex;
   flex-direction: column;
@@ -133,4 +133,34 @@
 /* settings تحت */
 .settings-bottom {
   margin-top: auto;
+}
+.sidebar {
+  width: 220px;
+  transition: all 0.3s ease;
+}
+
+.sidebar.closed {
+  width: 40px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sidebar.closed .sidebar-item {
+  justify-content: center;
+}
+
+.item-text {
+  white-space: nowrap;
+}
+
+/* اخفاء النص لما مغلق */
+.sidebar.closed .item-text {
+  display: none;
 }

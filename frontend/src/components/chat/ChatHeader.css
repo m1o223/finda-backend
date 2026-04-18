@@ -13,13 +13,13 @@
   padding: 0 12px;
 
   border-bottom: 1px solid var(--border);
-  background: #ffffff;
+  background: #181818;
 }
 
 /* ===== MENU BUTTON ===== */
 .menu-toggle {
   font-size: 20px;
-  background: #e9e8e8;
+  background: #ffffffe5;
   border: none;
   cursor: pointer;
 
@@ -38,7 +38,7 @@
 }
 
 .menu-toggle:hover {
-  background: #ccced1;
+  background: #ffffff;
 }
 
 /* ===== LOGO TEXT ===== */
@@ -46,12 +46,12 @@
   font-size: 23px;
   font-weight: 600;
 
-  background: linear-gradient(135deg, #6366f1, #974ddd);
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
   margin-left: 4px;
 
   /* glow خفيف */
-  text-shadow: 0 0 8px rgba(139, 92, 246, 0.15);
+  text-shadow: 0 0 8px rgba(74, 30, 177, 0.15);
 }
