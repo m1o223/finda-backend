@@ -6,13 +6,17 @@ export const scheduleReminder = async (reminder) => {
 
  try {
 
-  const date = new Date(reminder.date)
+const date = new Date(reminder.date)
 
-  if (reminder.time) {
-   date.setHours(reminder.time.hour || 0)
-   date.setMinutes(reminder.time.minute || 0)
-   date.setSeconds(0)
-  }
+if (reminder.time) {
+  date.setHours(reminder.time.hour || 0)
+  date.setMinutes(reminder.time.minute || 0)
+  date.setSeconds(0)
+}
+
+if (reminder.remindBefore) {
+  date.setMinutes(date.getMinutes() - reminder.remindBefore)
+}
 
   const now = new Date()
 

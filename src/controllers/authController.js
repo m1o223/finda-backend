@@ -13,14 +13,16 @@ import jwt from "jsonwebtoken";
 // # إنشاء توكن تسجيل الدخول
 // ###########################################################
 
-const generateToken = (id) => {
+const generateToken = (user) => {
   return jwt.sign(
-    { id },                 // البيانات داخل التوكن
-    process.env.JWT_SECRET, // المفتاح السري
-    { expiresIn: "30d" }    // مدة الصلاحية
+    {
+      id: user._id,
+      email: user.email,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: "30d" }
   );
 };
-
 
 
 // ###########################################################
@@ -87,7 +89,7 @@ export const register = async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      token: generateToken(user._id)
+      token: generateToken(user)
     });
 
   } catch (error) {
@@ -144,7 +146,7 @@ export const login = async (req, res) => {
         _id: user._id,
         name: user.name,
         email: user.email,
-        token: generateToken(user._id)
+        token: generateToken(user)
       });
 
     } else {
@@ -153,22 +155,25 @@ export const login = async (req, res) => {
       // # INVALID LOGIN
       // # بيانات تسجيل الدخول خاطئة
       // ###########################################################
+res.status(401).json({
+      message: "Invalid email or password"
+    });
+  }
+} catch (error) {
+  res.status(500).json({
+    message: error.message
+  });
+}
+};
 
-      res.status(401).json({
-        message: "Invalid email or password"
-      });
-
-    }
-
+export const getProfile = async (req, res) => {
+  try {
+    res.json({
+      email: req.user.email
+    });
   } catch (error) {
-
-    // ###########################################################
-    // # ERROR HANDLER
-    // # معالجة الأخطاء
-    // ###########################################################
-
     res.status(500).json({
-      message: error.message
+      message: "Failed to get profile"
     });
   }
 };

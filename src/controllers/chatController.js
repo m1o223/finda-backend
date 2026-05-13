@@ -17,11 +17,11 @@ export const chatController = async (req, res) => {
     // ================================
     // SAVE USER MESSAGE
     // ================================
-    await ChatMemory.create({
-      role: "user",
-      message: message
-    })
-
+await ChatMemory.create({
+  userId: req.user._id,
+  role: "user",
+  message: message
+})
     // ================================
     // PROCESS AI
     // ================================
@@ -36,10 +36,11 @@ export const chatController = async (req, res) => {
     // ================================
     // SAVE AI RESPONSE
     // ================================
-    await ChatMemory.create({
-      role: "assistant",
-      message: aiText
-    })
+ await ChatMemory.create({
+  userId: req.user._id,
+  role: "assistant",
+  message: aiText
+})
 
     // ================================
     // RESPONSE TO FRONTEND

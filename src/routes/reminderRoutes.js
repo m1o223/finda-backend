@@ -8,11 +8,11 @@ import {
  toggleReminder
 } from "../controllers/reminderController.js"
 
-import { protect } from "../middlewares/authMiddleware.js"
+import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router()
 
-router.use(protect)
+router.use(authMiddleware)
 router.post("/",createReminder)
 
 router.get("/",getReminders)

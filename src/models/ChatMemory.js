@@ -1,27 +1,55 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const chatMemorySchema = new mongoose.Schema({
 
   userId: {
+
     type: mongoose.Schema.Types.ObjectId,
+
     ref: "User"
+
   },
 
-  role: {
+  title: {
+
     type: String,
-    enum: ["user", "assistant"]
+
+    default: "New Chat"
+
   },
 
-  message: {
-    type: String,
-    required: true
-  },
+  messages: [
+
+    {
+
+      role: {
+
+        type: String,
+
+        enum: ["user", "assistant"]
+
+      },
+
+      content: {
+
+        type: String,
+
+        required: true
+
+      }
+
+    }
+
+  ],
 
   createdAt: {
+
     type: Date,
+
     default: Date.now
-  }
 
-})
+  } 
 
-export default mongoose.model("ChatMemory", chatMemorySchema)
+});
+
+export default mongoose.model("ChatMemory", chatMemorySchema);

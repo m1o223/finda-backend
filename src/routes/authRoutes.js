@@ -11,9 +11,13 @@ import express from "express";
 // # استيراد دوال تسجيل الحساب وتسجيل الدخول
 // ###########################################################
 
-import { register, login } from "../controllers/authController.js";
+import {
+  register,
+  login,
+  getProfile
+} from "../controllers/authController.js";
 
-
+import { authMiddleware } from "../middlewares/authMiddleware.js";
 // ###########################################################
 // # CREATE ROUTER
 // # إنشاء Router جديد من Express
@@ -50,5 +54,5 @@ router.post("/login", login);
 // # EXPORT ROUTER
 // # تصدير الراوتر ليتم استخدامه في server.js
 // ###########################################################
-
+router.get("/me", authMiddleware, getProfile);
 export default router;
