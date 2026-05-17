@@ -14,7 +14,8 @@ import express from "express";
 import {
   register,
   login,
-  getProfile
+  getProfile,
+  updatePreferences
 } from "../controllers/authController.js";
 
 import { authMiddleware } from "../middlewares/authMiddleware.js";
@@ -55,4 +56,9 @@ router.post("/login", login);
 // # تصدير الراوتر ليتم استخدامه في server.js
 // ###########################################################
 router.get("/me", authMiddleware, getProfile);
+router.put(
+  "/preferences",
+  authMiddleware,
+  updatePreferences
+);
 export default router;

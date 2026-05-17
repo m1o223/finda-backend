@@ -155,25 +155,80 @@ export const login = async (req, res) => {
       // # INVALID LOGIN
       // # بيانات تسجيل الدخول خاطئة
       // ###########################################################
-res.status(401).json({
-      message: "Invalid email or password"
-    });
+
+      res.status(401).json({
+  message: "Invalid email or password"
+});
+
   }
+
 } catch (error) {
+
   res.status(500).json({
     message: error.message
   });
+
 }
+
 };
 
 export const getProfile = async (req, res) => {
+
   try {
+
     res.json({
-      email: req.user.email
+      email: req.user.email,
+      theme: req.user.theme,
+      language: req.user.language,
+      chatColor: req.user.chatColor,
+      accentColor: req.user.accentColor
     });
+
   } catch (error) {
+
     res.status(500).json({
       message: "Failed to get profile"
     });
+
   }
+
+};
+
+export const updatePreferences = async (req, res) => {
+console.log(req.body);
+  try {
+
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+
+      return res.status(404).json({
+        message: "User not found"
+      });
+
+    }
+
+    user.theme = req.body.theme || user.theme;
+
+    user.language = req.body.language || user.language;
+
+    user.chatColor = req.body.chatColor || user.chatColor;
+
+    user.accentColor = req.body.accentColor || user.accentColor;
+
+    await user.save();
+
+    res.json({
+      success: true,
+      user
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message
+    });
+
+  }
+
 };
